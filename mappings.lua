@@ -33,6 +33,7 @@ return {
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     ["<leader>uz"] = { ":ZenMode<cr>", desc = "Zen Mode" },
+    ["<leader><space>"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" },
   },
   t = {
     -- setting a mapping to false will disable it
