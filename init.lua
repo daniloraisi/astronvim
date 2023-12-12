@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "catppuccin",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -69,6 +69,14 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+      pattern = { "*.yaml", "*.yml", "*.js", "*.css", "*.json" },
+      desc = "Restart the server when a file is saved",
+      callback = function()
+        vim.cmd ':silent exec "!cat /tmp/app-server[-.]pid | xargs kill -10"'
+        vim.notify("Restarting server...", vim.log.levels.INFO, { title = "Server" })
+      end,
+    })
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
