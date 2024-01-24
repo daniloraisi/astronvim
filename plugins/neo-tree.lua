@@ -4,5 +4,10 @@ return {
     window = {
       auto_expand_width = true,
     },
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+      }
+    }
   },
 }
